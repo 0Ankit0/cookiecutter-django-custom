@@ -139,14 +139,7 @@ THIRD_PARTY_SHARED_APPS = [
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
-]
-
-THIRD_PARTY_TENANT_APPS = [
-    "tenant_users.permissions",
-    "django_cotton",
-    "crispy_forms",
-    "crispy_bootstrap5",
-    {%- if cookiecutter.rest_api == 'DRF' %}
+{%- if cookiecutter.rest_api == 'DRF' %}
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
@@ -154,9 +147,17 @@ THIRD_PARTY_TENANT_APPS = [
 {%- elif cookiecutter.rest_api == 'Django Ninja' %}
     "corsheaders",
 {%- endif %}
+    "django_cotton",
+    "crispy_forms",
+    "crispy_bootstrap5",
 {%- if cookiecutter.frontend_pipeline == 'Webpack' %}
     "webpack_loader",
 {%- endif %}
+]
+
+THIRD_PARTY_TENANT_APPS = [
+    "tenant_users.permissions", 
+
 ]
 
 LOCAL_SHARED_APPS = [
