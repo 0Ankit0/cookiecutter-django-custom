@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <body style="margin:0;padding:32px;font-family:Arial,sans-serif;line-height:1.6;color:#111827">
+    <h1 style="margin:0 0 16px">You're invited to {{ tenant.name }}</h1>
+    <p>{{ invited_by }} has invited you to join {{ tenant.name }}.</p>
+    {% if message %}
+      <p style="padding:16px;background:#f3f4f6;border-radius:8px">{{ message }}</p>
+    {% endif %}
+    <p>
+      <a href="{{ invitation_url }}" style="display:inline-block;padding:12px 20px;background:#111827;color:#fff;text-decoration:none;border-radius:6px">
+        Accept invitation
+      </a>
+    </p>
+    <p style="font-size:14px;color:#6b7280">This invitation expires on {{ expires_at }}.</p>
+    <p style="font-size:14px;color:#6b7280">If you were not expecting this invitation, you can safely ignore this email.</p>
+  </body>
+</html>

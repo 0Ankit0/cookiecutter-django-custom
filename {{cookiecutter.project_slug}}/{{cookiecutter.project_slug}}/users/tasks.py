@@ -11,7 +11,7 @@ from django.core.files.storage import default_storage
 from django.db import close_old_connections
 from django.db import transaction
 
-from {{cookiecutter.project_slug}}.aws import aws_client
+from config.aws import aws_client
 
 from .models import User
 

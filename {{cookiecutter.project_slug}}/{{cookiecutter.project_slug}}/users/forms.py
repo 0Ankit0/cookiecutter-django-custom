@@ -21,7 +21,7 @@ class UserAdminChangeForm(admin_forms.UserChangeForm):
         {%- endif %}
 
 {%- if cookiecutter.use_django_unfold == 'y' %}
-class UserAdmin(admin_forms.UserCreationForm):
+class UserAdminCreationForm(admin_forms.UserCreationForm):
 {%- else %}
 class UserAdminCreationForm(admin_forms.AdminUserCreationForm):
 {%- endif %}

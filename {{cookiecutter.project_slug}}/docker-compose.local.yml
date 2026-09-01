@@ -3,7 +3,7 @@ volumes:
   {{ cookiecutter.project_slug }}_local_postgres_data_backups: {}
   {{ cookiecutter.project_slug }}_local_python_venv: {}
   {% if cookiecutter.use_celery == 'y' %}{{ cookiecutter.project_slug }}_local_redis_data: {}{% endif %}
-  {%- if cookiecutter.cloud_provider == 'AWS' %}{{ cookiecutter.project_slug }}_local_floci_data: {}{% endif %}
+  {% if cookiecutter.cloud_provider == 'AWS' %}{{ cookiecutter.project_slug }}_local_floci_data: {}{% endif %}
 
 services:
   django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}

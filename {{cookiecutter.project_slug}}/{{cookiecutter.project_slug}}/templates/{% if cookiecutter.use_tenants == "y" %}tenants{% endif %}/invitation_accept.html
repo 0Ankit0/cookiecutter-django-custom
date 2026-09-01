@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main class="mx-auto max-w-2xl px-6 py-12">
+    <h1 class="text-2xl font-semibold">Join {{ invitation.tenant.name }}</h1>
+    <p class="mt-2 text-gray-600">{{ invitation.invited_by }} invited you to join this organization.</p>
+    {% if invitation.message %}<p class="mt-4 rounded-md bg-gray-50 p-4">{{ invitation.message }}</p>{% endif %}
+    <p class="mt-4 text-sm text-gray-500">Expires {{ invitation.expires_at }}.</p>
+    <div class="mt-8 flex gap-3">
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="rounded-md bg-black px-4 py-2 text-white">Accept invitation</button>
+      </form>
+      <form method="post" action="{% url 'tenants:invitation-decline' invitation.token %}">
+        {% csrf_token %}
+        <button type="submit" class="rounded-md border px-4 py-2">Decline</button>
+      </form>
+    </div>
+  </main>
+{% endblock content %}

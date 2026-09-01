@@ -1,0 +1,14 @@
+Hello {{ email }},
+
+{{ invited_by }} has invited you to join {{ tenant.name }}.
+
+Accept the invitation:
+{{ invitation_url }}
+
+This invitation expires on {{ expires_at }}.
+{% if message %}
+Message from {{ invited_by }}:
+{{ message }}
+{% endif %}
+
+If you were not expecting this invitation, you can safely ignore this email.

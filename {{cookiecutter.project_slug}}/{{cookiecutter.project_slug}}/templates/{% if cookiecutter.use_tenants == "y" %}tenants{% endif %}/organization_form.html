@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main class="mx-auto max-w-2xl px-6 py-12">
+    <h1 class="text-2xl font-semibold">Create organization</h1>
+    <p class="mt-2 text-sm text-gray-600">You will become the owner and can invite other users after creation.</p>
+    <form method="post" class="mt-8 space-y-6">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="rounded-md bg-black px-4 py-2 text-white">Create organization</button>
+    </form>
+  </main>
+{% endblock content %}
