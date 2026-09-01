@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             model_name='user',
             name='username',
         ),
-{%- endif %-}
+{%- endif %}
         migrations.AddField(
             model_name='user',
             name='is_verified',
