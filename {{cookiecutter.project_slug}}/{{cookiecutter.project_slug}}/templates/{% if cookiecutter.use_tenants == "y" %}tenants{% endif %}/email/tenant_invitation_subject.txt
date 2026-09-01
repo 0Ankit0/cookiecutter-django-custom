@@ -1,1 +1,1 @@
-Invitation to join {{ tenant.name }}
+{% raw %}Invitation to join {{ tenant.name }}{% endraw %}
