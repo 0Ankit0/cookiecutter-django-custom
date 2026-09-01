@@ -127,15 +127,11 @@ THIRD_PARTY_SHARED_APPS = [
     "tenant_users.permissions",
     
     "django_tailwind_cli",
-    "django_cotton",
-    "crispy_forms",
     "imagekit",
-    "crispy_bootstrap5",
     "allauth",
     "allauth.account",
     "allauth.mfa",
     "allauth.socialaccount",
-    "corsheaders",
 {%- if cookiecutter.use_celery == 'y' %}
     "django_celery_beat",
 {%- endif %}
