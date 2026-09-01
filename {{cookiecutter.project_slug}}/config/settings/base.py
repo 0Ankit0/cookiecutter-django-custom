@@ -67,7 +67,8 @@ else:
             "PORT": env("POSTGRES_PORT", default="5432"),
         }
     }
-    {%- endif %}
+DATABASE_ROUTERS = ("django_tenants.routers.TenantSyncRouter",)
+    {%- else %}
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -78,10 +79,6 @@ else:
             "PORT": env.str("POSTGRES_PORT", default="5432"),
         },
     }
-
-{%- if cookiecutter.use_tenants == 'y' %}
-DATABASES["default"]["ENGINE"] = "django_tenants.postgresql_backend"
-DATABASE_ROUTERS = ("django_tenants.routers.TenantSyncRouter",)
 {%- endif %}
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -116,6 +113,8 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
 {%- if cookiecutter.use_django_unfold == 'y' %}
     "unfold",
+    "unfold.contrib.forms",
+    "unfold.contrib.filters",
 {%- endif %}
     "django.contrib.admin",
     "django.forms",
