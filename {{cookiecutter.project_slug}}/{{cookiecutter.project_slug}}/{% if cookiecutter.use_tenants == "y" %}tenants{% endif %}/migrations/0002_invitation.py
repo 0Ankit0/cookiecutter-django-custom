@@ -6,7 +6,7 @@ import django.db.models.deletion
 from django.conf import settings
 from django.db import migrations, models
 from django.db.models import Q
-from django_template.tenants.models import default_invitation_expiry
+from {{cookiecutter.project_slug}}.tenants.models import default_invitation_expiry
 
 
 class Migration(migrations.Migration):
