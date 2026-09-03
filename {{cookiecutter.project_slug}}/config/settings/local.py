@@ -175,16 +175,38 @@ CELERY_TASK_EAGER_PROPAGATES = True
 WEBPACK_LOADER["DEFAULT"]["CACHE"] = not DEBUG
 
 {%- endif %}
+{% if cookiecutter.cloud_provider == 'AWS' %}
 
-# Adding local file storage for development
+AWS_ACCESS_KEY_ID = env.str("DJANGO_AWS_ACCESS_KEY_ID", default="test")
+AWS_SECRET_ACCESS_KEY = env.str("DJANGO_AWS_SECRET_ACCESS_KEY", default="test")
+AWS_SESSION_TOKEN = env.str("AWS_SESSION_TOKEN", default="")
+AWS_REGION = env.str("DJANGO_AWS_S3_REGION_NAME", default="us-east-1")
+AWS_ENDPOINT_URL = env.str("AWS_ENDPOINT_URL", default="http://floci:4566")
+AWS_STORAGE_BUCKET_NAME = env.str("DJANGO_AWS_STORAGE_BUCKET_NAME", default="{{ cookiecutter.project_slug }}-media")
+AWS_S3_REGION_NAME = AWS_REGION
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_MAX_MEMORY_SIZE = env.int("DJANGO_AWS_S3_MAX_MEMORY_SIZE", default=100_000_000)
+AWS_S3_CUSTOM_DOMAIN = env.str("DJANGO_AWS_S3_CUSTOM_DOMAIN", default="")
+AWS_S3_ADDRESSING_STYLE = "path"
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=604800, s-maxage=604800, must-revalidate"}
+AWS_S3_LOCATION = env.str("DJANGO_AWS_S3_LOCATION", default="media")
+AWS_AVATAR_LAMBDA_FUNCTION_NAME = env.str("AWS_AVATAR_LAMBDA_FUNCTION_NAME", default="{{ cookiecutter.project_slug }}-avatar-processor")
+
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "location": AWS_S3_LOCATION,
+            "file_overwrite": False,
+            "endpoint_url": AWS_ENDPOINT_URL,
+            "bucket_name": AWS_STORAGE_BUCKET_NAME,
+            "region_name": AWS_REGION,
+            "addressing_style": AWS_S3_ADDRESSING_STYLE,
+        },
     },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
+    "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
 }
 
+{%- endif %}
 # Your stuff...
 # ------------------------------------------------------------------------------
